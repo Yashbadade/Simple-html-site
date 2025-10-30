@@ -1,33 +1,22 @@
-name: Deploy HTML to GitHub Pages
+name: Deploy to AWS EC2
 
 on:
   push:
-    branches: [ master ]  # Change to 'main' if that's your default
-
-permissions:
-  contents: read
-  pages: write
-  id-token: write
+    branches: [ master ]  # or 'main'
 
 jobs:
   deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v3
-
-      - name: Upload site
-        uses: actions/upload-pages-artifact@v2
+      - name: Deploy via SSH
+        uses: easingthemes/ssh-deploy@v2.2.11
         with:
-          path: .
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v2
+          ssh-private-key: ${{ secrets.EC2_SSH_KEY }}
+          remote-user: ${{ secrets.EC2_USER }}
+          server-ip: ${{ secrets.EC2_HOST }}
+          remote-path: /var/www/html
+          local-path: .
