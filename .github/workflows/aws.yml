@@ -13,7 +13,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Deploy index.html to Apache
+      - name: Deploy updated homepage
         run: |
-          sudo cp index.html /var/www/html/index.html
+          sudo cp flexbox.html /var/www/html/index.html
+          sudo cp About.html /var/www/html/
+          sudo cp Contact.html /var/www/html/
           sudo systemctl restart apache2
