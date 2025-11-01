@@ -1,21 +1,19 @@
-name: Deploy HTML to EC2
+name: Debug EC2 Deployment
 
 on:
-  push:
-    branches: [ main ]
   workflow_dispatch:
 
 jobs:
-  deploy:
+  debug:
     runs-on: self-hosted
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Deploy updated homepage
+      - name: Show working directory and files
         run: |
-          sudo cp flexbox.html /var/www/html/index.html
-          sudo cp about.html /var/www/html/
-          sudo cp contact.html /var/www/html/
-          sudo systemctl restart apache2
+          echo "Current directory:"
+          pwd
+          echo "Files in repo:"
+          ls -la
