@@ -13,9 +13,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-- name: Deploy updated homepage
-  run: |
-    sudo cp index.html /var/www/html/index.html
-    sudo cp about.html /var/www/html/
-    sudo cp contact.html /var/www/html/
-    sudo systemctl restart apache2
+      - name: Deploy updated homepage
+        run: |
+          sudo cp index.html /var/www/html/index.html
+          sudo cp about.html /var/www/html/
+          sudo cp contact.html /var/www/html/
+          sudo systemctl restart apache2
