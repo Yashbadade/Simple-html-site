@@ -15,5 +15,5 @@ jobs:
 
       - name: Deploy index.html to Apache
         run: |
-          sudo cp index.html /var/www/html/index.html
+          sudo cp flexbox.html /var/www/html/index.html
           sudo systemctl restart apache2
