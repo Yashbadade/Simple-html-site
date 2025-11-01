@@ -15,7 +15,7 @@ jobs:
 
       - name: Deploy updated homepage
         run: |
-          sudo cp index.html /var/www/html/index.html
+          sudo cp index.html /var/www/html/flexbox.html
           sudo cp about.html /var/www/html/
           sudo cp contact.html /var/www/html/
           sudo systemctl restart apache2
